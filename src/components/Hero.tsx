@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -42,9 +41,12 @@ const Hero = () => {
               <div className="absolute top-4 left-20 w-64 h-80 bg-yugioh rounded-lg transform rotate-12 shadow-xl animate-float animation-delay-200 z-20">
                 <img 
                   src="/lovable-uploads/68cda54f-cb45-4299-8a9a-7368b8fabb07.png" 
-                  alt="Blue-Eyes White Dragon" 
+                  alt="Dragão Branco de Olhos Azuis - 1ª Edição" 
                   className="w-full h-full object-cover rounded-lg"
                 />
+                <div className="absolute bottom-2 left-2 right-2 bg-black bg-opacity-50 text-white text-center py-1 rounded">
+                  Dragão Branco de Olhos Azuis - 1ª Edição
+                </div>
               </div>
               <div className="absolute top-12 -left-4 w-48 h-64 bg-pokemon rounded-lg transform -rotate-6 shadow-xl animate-float z-10">
                 <img 
