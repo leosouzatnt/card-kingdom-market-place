@@ -39,6 +39,13 @@ const Hero = () => {
               </div>
             </div>
             <div className="relative hidden md:block">
+              <div className="absolute top-4 left-20 w-64 h-80 bg-yugioh rounded-lg transform rotate-12 shadow-xl animate-float animation-delay-200 z-20">
+                <img 
+                  src="/lovable-uploads/68cda54f-cb45-4299-8a9a-7368b8fabb07.png" 
+                  alt="Blue-Eyes White Dragon" 
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
               <div className="absolute top-12 -left-4 w-48 h-64 bg-pokemon rounded-lg transform -rotate-6 shadow-xl animate-float z-10">
                 <img 
                   src="https://assets.pokemon.com/assets/cms2/img/cards/web/SM12/SM12_EN_5.png" 
@@ -46,17 +53,10 @@ const Hero = () => {
                   className="w-full h-full object-cover rounded-lg"
                 />
               </div>
-              <div className="absolute top-4 left-20 w-48 h-64 bg-magic rounded-lg transform rotate-12 shadow-xl animate-float animation-delay-200 z-20">
+              <div className="absolute top-16 left-40 w-48 h-64 bg-magic rounded-lg transform -rotate-12 shadow-xl animate-float animation-delay-400 z-30">
                 <img 
-                  src="https://static.cardmarket.com/img/3b5a3b8c872e99273e649e04862b9882/items/1/GRN/369655.jpg" 
+                  src="https://static.cardmarket.com/img/a0298e0c3aaf3b49543e8c05741bc43c/items/1/WWK/189956.jpg" 
                   alt="Carta Magic" 
-                  className="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-              <div className="absolute top-16 left-40 w-48 h-64 bg-yugioh rounded-lg transform -rotate-12 shadow-xl animate-float animation-delay-400 z-30">
-                <img 
-                  src="https://product-images.tcgplayer.com/fit-in/437x437/420960.jpg" 
-                  alt="Carta Yu-Gi-Oh" 
                   className="w-full h-full object-cover rounded-lg"
                 />
               </div>
