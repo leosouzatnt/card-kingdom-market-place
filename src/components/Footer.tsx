@@ -17,16 +17,16 @@ const Footer = () => {
               O melhor lugar para encontrar cartas colecionáveis e expandir seu deck para jogos de cartas como Pokémon, Yu-Gi-Oh, Magic e Bakugan.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
                 <Instagram className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
                 <Twitter className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
                 <Facebook className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
                 <Youtube className="h-6 w-6" />
               </a>
             </div>
@@ -40,6 +40,9 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/products" className="text-gray-400 hover:text-white">Todos os Produtos</Link>
+              </li>
+              <li>
+                <Link to="/shop" className="text-gray-400 hover:text-white">Loja</Link>
               </li>
               <li>
                 <Link to="/tracking" className="text-gray-400 hover:text-white">Rastrear Pedido</Link>
@@ -89,7 +92,7 @@ const Footer = () => {
               </li>
               <li className="flex">
                 <Mail className="h-6 w-6 mr-3 text-gray-400" />
-                <span>contato@cardkingdom.com</span>
+                <a href="mailto:contato@cardkingdom.com" className="hover:text-white">contato@cardkingdom.com</a>
               </li>
               <li className="flex">
                 <CreditCard className="h-6 w-6 mr-3 text-gray-400" />
