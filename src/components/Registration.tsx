@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -13,8 +14,8 @@ const Registration = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Cadastro recebido!",
-      description: "Enviamos um email de confirmação para você.",
+      title: "Redirecionando para o cadastro",
+      description: "Você será redirecionado para nossa página completa de cadastro.",
     });
   };
   
@@ -55,46 +56,14 @@ const Registration = () => {
                 Preencha os campos abaixo para se cadastrar na nossa loja
               </CardDescription>
             </CardHeader>
-            <form onSubmit={handleSubmit}>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="firstName">Nome</Label>
-                    <Input id="firstName" placeholder="Digite seu nome" required />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="lastName">Sobrenome</Label>
-                    <Input id="lastName" placeholder="Digite seu sobrenome" required />
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="seu@email.com" required />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="password">Senha</Label>
-                  <Input id="password" type="password" placeholder="********" required />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="confirmPassword">Confirmar senha</Label>
-                  <Input id="confirmPassword" type="password" placeholder="********" required />
-                </div>
-                
-                <div className="flex items-start space-x-2 pt-2">
-                  <Checkbox id="terms" />
-                  <Label htmlFor="terms" className="text-sm">
-                    Concordo com os <a href="#" className="text-blue-600 hover:underline">Termos de Serviço</a> e <a href="#" className="text-blue-600 hover:underline">Política de Privacidade</a>
-                  </Label>
-                </div>
-              </CardContent>
-              
-              <CardFooter>
-                <Button type="submit" className="w-full bg-magic hover:bg-magic/90">Criar conta</Button>
-              </CardFooter>
-            </form>
+            <Button 
+              component={Link} 
+              to="/register" 
+              className="w-[calc(100%-48px)] mx-6 mb-6 bg-magic hover:bg-magic/90"
+              asChild
+            >
+              <Link to="/register">Ir para o cadastro completo</Link>
+            </Button>
           </Card>
         </div>
       </div>
