@@ -1,11 +1,12 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Plus } from 'lucide-react';
 import { toast } from "@/components/ui/use-toast";
+import { useCart } from '@/context/CartContext';
 
 // Mock product data
 const mockProducts = [
@@ -66,23 +67,11 @@ const mockProducts = [
 ];
 
 const ShopContent = () => {
-  const [cart, setCart] = useState<{id: number, quantity: number}[]>([]);
   const navigate = useNavigate();
+  const { addToCart, getCartQuantity } = useCart();
   
-  const addToCart = (productId: number) => {
-    setCart(prevCart => {
-      const existingItem = prevCart.find(item => item.id === productId);
-      
-      if (existingItem) {
-        return prevCart.map(item => 
-          item.id === productId 
-            ? { ...item, quantity: item.quantity + 1 } 
-            : item
-        );
-      } else {
-        return [...prevCart, { id: productId, quantity: 1 }];
-      }
-    });
+  const handleAddToCart = (productId: number) => {
+    addToCart(productId);
     
     toast({
       title: "Produto adicionado ao carrinho!",
@@ -96,7 +85,7 @@ const ShopContent = () => {
         <h2 className="text-2xl font-bold">Produtos em Destaque</h2>
         <Button variant="outline" onClick={() => navigate('/cart')}>
           <ShoppingCart className="h-4 w-4 mr-2" />
-          <span>Carrinho ({cart.reduce((acc, item) => acc + item.quantity, 0)})</span>
+          <span>Carrinho ({getCartQuantity()})</span>
         </Button>
       </div>
       
@@ -125,7 +114,7 @@ const ShopContent = () => {
             </CardContent>
             <CardFooter className="p-4 pt-0">
               <Button 
-                onClick={() => addToCart(product.id)} 
+                onClick={() => handleAddToCart(product.id)} 
                 className="w-full"
               >
                 <Plus className="h-4 w-4 mr-2" /> Adicionar ao Carrinho

@@ -1,71 +1,86 @@
 
 import React from 'react';
+import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Checkbox } from '@/components/ui/checkbox';
-import { useToast } from '@/components/ui/use-toast';
+
+// This is a simplified version of the Registration component
+// The actual implementation will include form fields and submission logic
 
 const Registration = () => {
-  const { toast } = useToast();
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast({
-      title: "Redirecionando para o cadastro",
-      description: "Você será redirecionado para nossa página completa de cadastro.",
-    });
-  };
-  
   return (
-    <div className="py-16 bg-gray-100" id="register">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Cadastre-se para ofertas exclusivas</h2>
-            <p className="text-gray-600 mb-6">
-              Junte-se à comunidade Card Kingdom e tenha acesso a:
-            </p>
-            
-            <ul className="space-y-4">
-              {[
-                "Descontos exclusivos para membros",
-                "Notificações sobre novos lançamentos",
-                "Acesso antecipado às promoções",
-                "Conteúdo exclusivo sobre estratégias e dicas",
-                "Programa de fidelidade com pontos para trocar por cartas"
-              ].map((item, index) => (
-                <li key={index} className="flex items-start">
-                  <div className="bg-green-100 p-1 rounded-full mr-3 mt-1">
-                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          <Card>
-            <CardHeader>
-              <CardTitle>Criar uma conta</CardTitle>
-              <CardDescription>
-                Preencha os campos abaixo para se cadastrar na nossa loja
-              </CardDescription>
-            </CardHeader>
-            <Button 
-              component={Link} 
-              to="/register" 
-              className="w-[calc(100%-48px)] mx-6 mb-6 bg-magic hover:bg-magic/90"
-              asChild
-            >
-              <Link to="/register">Ir para o cadastro completo</Link>
-            </Button>
-          </Card>
+    <div className="max-w-md w-full mx-auto bg-white p-8 shadow-md rounded-lg">
+      <div className="text-center mb-6">
+        <h1 className="text-2xl font-bold">Criar uma Conta</h1>
+        <p className="text-gray-600">Cadastre-se para comprar suas cartas favoritas</p>
+      </div>
+      
+      <div className="space-y-4">
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            Nome Completo
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Digite seu nome completo"
+          />
         </div>
+        
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Digite seu email"
+          />
+        </div>
+        
+        <div>
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            Senha
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autoComplete="new-password"
+            required
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Digite uma senha segura"
+          />
+        </div>
+      </div>
+      
+      <div className="mt-6">
+        <Button type="submit" className="w-full">
+          Criar Conta
+        </Button>
+      </div>
+      
+      <div className="mt-4 text-center text-sm">
+        <p className="text-gray-600">
+          Já possui uma conta?{' '}
+          <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+            Entrar
+          </Link>
+        </p>
+      </div>
+      
+      <div className="mt-6">
+        <Link to="/register">
+          <Button variant="outline" className="w-full">
+            Ir para o cadastro completo
+          </Button>
+        </Link>
       </div>
     </div>
   );

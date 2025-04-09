@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Plus } from 'lucide-react';
 import { toast } from "@/components/ui/use-toast";
+import { useCart } from '@/context/CartContext';
 
 // Mock product data organized by category
 const productsByCategory = {
@@ -179,22 +180,10 @@ interface ProductCategoryDisplayProps {
 
 const ProductCategoryDisplay: React.FC<ProductCategoryDisplayProps> = ({ category }) => {
   const navigate = useNavigate();
-  const [cart, setCart] = React.useState<{id: number, quantity: number}[]>([]);
+  const { addToCart, getCartQuantity } = useCart();
   
-  const addToCart = (productId: number) => {
-    setCart(prevCart => {
-      const existingItem = prevCart.find(item => item.id === productId);
-      
-      if (existingItem) {
-        return prevCart.map(item => 
-          item.id === productId 
-            ? { ...item, quantity: item.quantity + 1 } 
-            : item
-        );
-      } else {
-        return [...prevCart, { id: productId, quantity: 1 }];
-      }
-    });
+  const handleAddToCart = (productId: number) => {
+    addToCart(productId);
     
     toast({
       title: "Produto adicionado ao carrinho!",
@@ -229,7 +218,7 @@ const ProductCategoryDisplay: React.FC<ProductCategoryDisplayProps> = ({ categor
         </h2>
         <Button variant="outline" onClick={() => navigate('/cart')}>
           <ShoppingCart className="h-4 w-4 mr-2" />
-          <span>Carrinho ({cart.reduce((acc, item) => acc + item.quantity, 0)})</span>
+          <span>Carrinho ({getCartQuantity()})</span>
         </Button>
       </div>
       
@@ -269,7 +258,7 @@ const ProductCategoryDisplay: React.FC<ProductCategoryDisplayProps> = ({ categor
             </CardContent>
             <CardFooter className="p-4 pt-0">
               <Button 
-                onClick={() => addToCart(product.id)} 
+                onClick={() => handleAddToCart(product.id)} 
                 className="w-full"
               >
                 <Plus className="h-4 w-4 mr-2" /> Adicionar ao Carrinho
