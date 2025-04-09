@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
   Menu, 
@@ -13,6 +13,11 @@ import {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -26,16 +31,16 @@ const Navbar = () => {
           </div>
           
           <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-            <Link to="/" className="inline-flex items-center px-1 pt-1 border-b-2 border-magic text-sm font-medium">
+            <Link to="/" className={`inline-flex items-center px-1 pt-1 border-b-2 ${isActive('/') ? 'border-magic text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'} text-sm font-medium`}>
               Home
             </Link>
-            <Link to="/products" className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+            <Link to="/products" className={`inline-flex items-center px-1 pt-1 border-b-2 ${isActive('/products') ? 'border-magic text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'} text-sm font-medium`}>
               Produtos
             </Link>
-            <Link to="/testimonials" className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+            <Link to="/testimonials" className={`inline-flex items-center px-1 pt-1 border-b-2 ${isActive('/testimonials') ? 'border-magic text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'} text-sm font-medium`}>
               Depoimentos
             </Link>
-            <Link to="/tracking" className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+            <Link to="/tracking" className={`inline-flex items-center px-1 pt-1 border-b-2 ${isActive('/tracking') ? 'border-magic text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'} text-sm font-medium`}>
               Rastreamento
             </Link>
           </div>
@@ -72,16 +77,16 @@ const Navbar = () => {
       {isOpen && (
         <div className="sm:hidden">
           <div className="pt-2 pb-3 space-y-1">
-            <Link to="/" className="block pl-3 pr-4 py-2 border-l-4 border-magic text-base font-medium bg-magic bg-opacity-10">
+            <Link to="/" className={`block pl-3 pr-4 py-2 border-l-4 ${isActive('/') ? 'border-magic bg-magic bg-opacity-10 text-magic' : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300'} text-base font-medium`}>
               Home
             </Link>
-            <Link to="/products" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300">
+            <Link to="/products" className={`block pl-3 pr-4 py-2 border-l-4 ${isActive('/products') ? 'border-magic bg-magic bg-opacity-10 text-magic' : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300'} text-base font-medium`}>
               Produtos
             </Link>
-            <Link to="/testimonials" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300">
+            <Link to="/testimonials" className={`block pl-3 pr-4 py-2 border-l-4 ${isActive('/testimonials') ? 'border-magic bg-magic bg-opacity-10 text-magic' : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300'} text-base font-medium`}>
               Depoimentos
             </Link>
-            <Link to="/tracking" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300">
+            <Link to="/tracking" className={`block pl-3 pr-4 py-2 border-l-4 ${isActive('/tracking') ? 'border-magic bg-magic bg-opacity-10 text-magic' : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300'} text-base font-medium`}>
               Rastreamento
             </Link>
             <div className="flex items-center justify-between px-4 py-2">
