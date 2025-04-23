@@ -1,10 +1,10 @@
-
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface GameCategory {
   id: string;
@@ -187,6 +187,8 @@ const categories: GameCategory[] = [
 ];
 
 const CardShowcase = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="py-12 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -275,7 +277,13 @@ const CardShowcase = () => {
                 ))}
               </div>
               <div className="mt-8 text-center">
-                <Button variant="outline" className="border-2">Ver mais {category.name}</Button>
+                <Button 
+                  variant="outline" 
+                  className="border-2"
+                  onClick={() => navigate(`/products/${category.id}`)}
+                >
+                  Ver mais {category.name}
+                </Button>
               </div>
             </TabsContent>
           ))}

@@ -1,10 +1,16 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { PackageSearch, Truck, CheckCircle2, Package } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+
+const generateTrackingNumber = () => {
+  const prefix = 'BR';
+  const numbers = Math.random().toString().slice(2, 11);
+  const suffix = 'CD';
+  return `${prefix}${numbers}${suffix}`;
+};
 
 const OrderTracking = () => {
   const [trackingNumber, setTrackingNumber] = useState('');
@@ -33,36 +39,26 @@ const OrderTracking = () => {
 
     setIsSearching(true);
     
-    // Simulando busca de pedido com um timeout
+    // Simulate tracking search with random status
     setTimeout(() => {
-      // Simulando dados de pedido
-      if (trackingNumber === '123456789' || trackingNumber.length > 5) {
-        const statuses = ['processing', 'shipped', 'delivered'] as const;
-        const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-        
-        setTrackingResult({
-          orderNumber: trackingNumber,
-          status: randomStatus,
-          statusText: 
-            randomStatus === 'processing' ? 'Em processamento' : 
-            randomStatus === 'shipped' ? 'Em trânsito' : 
-            'Entregue',
-          updateDate: new Date().toLocaleDateString('pt-BR'),
-          estimatedDelivery: 
-            randomStatus === 'processing' ? 
-              new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString('pt-BR') : 
-            randomStatus === 'shipped' ? 
-              new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toLocaleDateString('pt-BR') :
-              new Date().toLocaleDateString('pt-BR')
-        });
-      } else {
-        toast({
-          variant: "destructive",
-          title: "Pedido não encontrado",
-          description: "Não foi possível encontrar um pedido com esse número. Verifique e tente novamente.",
-        });
-        setTrackingResult(null);
-      }
+      const statuses = ['processing', 'shipped', 'delivered'] as const;
+      const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+      
+      setTrackingResult({
+        orderNumber: trackingNumber,
+        status: randomStatus,
+        statusText: 
+          randomStatus === 'processing' ? 'Em processamento' : 
+          randomStatus === 'shipped' ? 'Em trânsito' : 
+          'Entregue',
+        updateDate: new Date().toLocaleDateString('pt-BR'),
+        estimatedDelivery: 
+          randomStatus === 'processing' ? 
+            new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString('pt-BR') : 
+          randomStatus === 'shipped' ? 
+            new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toLocaleDateString('pt-BR') :
+            new Date().toLocaleDateString('pt-BR')
+      });
       
       setIsSearching(false);
     }, 1500);

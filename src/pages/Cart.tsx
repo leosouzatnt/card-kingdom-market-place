@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -7,6 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { toast } from "@/components/ui/use-toast";
 import { useCart, getProductById } from '@/context/CartContext';
+
+// Helper function to generate random tracking number
+const generateTrackingNumber = () => {
+  const prefix = 'BR';
+  const numbers = Math.random().toString().slice(2, 11);
+  const suffix = 'CD';
+  return `${prefix}${numbers}${suffix}`;
+};
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -46,12 +53,24 @@ const Cart = () => {
   };
 
   const handleCheckout = () => {
+    const trackingNumber = generateTrackingNumber();
+    
     toast({
       title: "Compra finalizada!",
-      description: `Pedido no valor de R$ ${getCartTotal().toFixed(2)} processado com sucesso.`,
+      description: `Pedido finalizado com sucesso! Seu número de rastreamento é: ${trackingNumber}`,
     });
+    
+    // Store tracking number in localStorage
+    const trackingHistory = JSON.parse(localStorage.getItem('trackingHistory') || '[]');
+    trackingHistory.push({
+      trackingNumber,
+      date: new Date().toISOString(),
+      total: getCartTotal(),
+    });
+    localStorage.setItem('trackingHistory', JSON.stringify(trackingHistory));
+    
     clearCart();
-    navigate('/tracking');
+    navigate('/tracking', { state: { trackingNumber } });
   };
 
   return (
