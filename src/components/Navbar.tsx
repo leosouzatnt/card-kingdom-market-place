@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,7 @@ import { Plus } from 'lucide-react';
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { cart } = useCart();
+  const { cartItems } = useCart(); // Changed from cart to cartItems to match the context
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -65,8 +66,8 @@ const Navbar = () => {
             </Link>
             <Button variant="outline" size="sm" onClick={() => navigate('/cart')}>
               Carrinho
-              {cart.length > 0 && (
-                <Badge className="ml-2">{cart.length}</Badge>
+              {cartItems.length > 0 && (
+                <Badge className="ml-2">{cartItems.length}</Badge>
               )}
               <ShoppingCart className="w-4 h-4" />
             </Button>
